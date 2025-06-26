@@ -1,19 +1,19 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     private PlayerControlls controls;
     private CharacterController characterController;
 
+    [Header("Movemento info")]
+    [SerializeField] private float walkSpeed;
+    private Vector3 movementDirection;
+    private float verticalVelocity;
 
-    public Vector3 movementDirection;
-
-
-
+    [Header("Aim info")]
+    [SerializeField] private Transform aim;
+    [SerializeField] private LayerMask aimLayerMask;
+    private Vector3 lookingDirection;
 
     private Vector2 moveInput;
     private Vector2 aimInput;
@@ -33,6 +33,53 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        ApplyMovement();
+        AimTowardsMouse();
+        
+    }
+
+    private void AimTowardsMouse()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(aimInput);
+
+        if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, aimLayerMask))
+        {
+            lookingDirection = hitInfo.point - transform.position;
+            lookingDirection.y = 0f;
+            lookingDirection.Normalize();
+
+            transform.forward = lookingDirection;
+
+            aim.position = new Vector3 (hitInfo.point.x, transform.position.y, hitInfo.point.z);
+        }
+    }
+
+    private void ApplyMovement()
+    {
+        movementDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        ApplyGravity();
+
+        if (movementDirection.magnitude > 0)
+        {
+            characterController.Move(movementDirection * Time.deltaTime * walkSpeed);
+        }
+    }
+
+    private void ApplyGravity()
+    {
+        if (characterController.isGrounded == false)
+        {
+            verticalVelocity -= 9.81f * Time.deltaTime;
+            movementDirection.y = verticalVelocity;
+        }
+        else
+        {
+            verticalVelocity = -.4f;
+        }
     }
 
     private void OnEnable()
