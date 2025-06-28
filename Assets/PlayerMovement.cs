@@ -4,6 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private PlayerControlls controls;
     private CharacterController characterController;
+    private Animator animator;
 
     [Header("Movemento info")]
     [SerializeField] private float walkSpeed;
@@ -33,13 +34,24 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
     {
         ApplyMovement();
         AimTowardsMouse();
-        
+        AnimatorControllers();
+    }
+
+    // Metedo para pegar os parametros criado no animator do player e controlar as animaçãos
+    private void AnimatorControllers()
+    {
+        float xVelocity = Vector3.Dot(movementDirection.normalized, transform.right);
+        float zVelocity = Vector3.Dot(movementDirection.normalized, transform.forward);
+
+        animator.SetFloat("xVelocity", xVelocity, .1f, Time.deltaTime);
+        animator.SetFloat("zVelocity", zVelocity, .1f, Time.deltaTime);
     }
 
     private void AimTowardsMouse()
