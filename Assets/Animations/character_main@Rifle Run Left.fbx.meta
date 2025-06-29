@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 07ede1d799cc44c47a20957732016cd6
+guid: 98310cf5c56fc674f9ba2e4000dde975
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Rifle Run Left
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 88
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -106,14 +106,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - dcab5b0d03419064691cb893863ae25f
-  - 15ca6acae1af52340b250dfbe210a48a
-  - 98310cf5c56fc674f9ba2e4000dde975
-  - 21a1200282d4f7842b0aa0912f5fa5f6
-  - a369fb4d2229d6742939be0f1b4d8376
-  - 99afe369663b604439eadb9e7dca93b5
-  - b35a3af75ea59f54cb9bfada02d86af6
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
@@ -804,11 +797,11 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 07ede1d799cc44c47a20957732016cd6, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 1
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
