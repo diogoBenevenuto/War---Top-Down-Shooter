@@ -43,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
         AnimatorControllers();
     }
 
+    private void Shoot()
+    {
+        animator.SetTrigger("Fire");
+    }
+
     // Metedo para pegar os parametros criado no animator do player e controlar as animaçãos
     private void AnimatorControllers()
     {
@@ -101,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controls = new PlayerControlls();
 
+        controls.Character.Fire.performed += context => Shoot();
 
         controls.Character.Movement.performed += context => moveInput = context.ReadValue<Vector2>();
         controls.Character.Movement.canceled += context => moveInput = Vector2.zero;
